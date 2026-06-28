@@ -19,5 +19,7 @@ spec:
       containers:
       - image: "{{.Values.image.repository}}:{{.Values.image.tag}}"
         name: lab-admin-go
-        resources: {}
+        envFrom:
+        - configMapRef:
+            name: lab-admin-go
 status: {}
