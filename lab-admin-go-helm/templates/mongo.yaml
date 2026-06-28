@@ -22,6 +22,14 @@ spec:
         envFrom:
         - configMapRef:
             name: db-config
+        mounts:
+        - name: mongo-config-volume
+          mountPath: /etc/mongo
+          subPath: mongod.conf
+      volumes:
+      - name: mongo-config-volume
+        configMap:
+          name: mongo-config
 status: {}
 
 
@@ -38,6 +46,18 @@ metadata:
 
 ---
 apiVersion: v1
+data:
+  mongod.conf: |
+    net:
+      port: 27017
+      bindIp: 0.0.0.0
+kind: ConfigMap
+metadata:
+  name: mongo-config
+  namespace: {{.Values.namespace}} 
+
+---
+apiVersion: v1
 kind: Service
 metadata:
   labels:
@@ -49,3 +69,4 @@ spec:
   - port: 27017
     protocol: TCP
     targetPort: 27017
+
