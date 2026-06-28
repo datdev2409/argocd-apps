@@ -66,6 +66,8 @@ metadata:
   name: lab-admin-go-db
   namespace: {{.Values.namespace}}
 spec:
+  selector:
+    app: lab-admin-go-db
   ports:
   - port: 27017
     protocol: TCP
