@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://helm.releases.hashicorp.com
     targetRevision: 0.33.0 # make sure to change this to the version you need
-    chart: hashicorp/vault
+    chart: vault-helm
   destination:
     name: in-cluster
     namespace: vault # you can use any namespace
