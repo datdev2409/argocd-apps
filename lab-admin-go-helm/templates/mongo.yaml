@@ -23,7 +23,7 @@ spec:
         envFrom:
         - configMapRef:
             name: db-config
-        mounts:
+        volumeMounts:
         - name: mongo-config-volume
           mountPath: /etc/mongodb/mongod.conf
           subPath: mongod.conf
