@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: lab-admin-go-db
+  name: lab-admin-go-db
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: lab-admin-go-db
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: lab-admin-go-db
+    spec:
+      containers:
+      - image: "mongo:latest"
+        name: mongo
+        envFrom:
+        - configMapRef:
+            name: db-config
+status: {}
+
+
+---
+apiVersion: v1
+data:
+  MONGO_INITDB_ROOT_USERNAME: root
+  MONGO_INITDB_ROOT_PASSWORD: password123
+  MONGO_INITDB_DATABASE: labadmin
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: {{.Values.namespace}}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: lab-admin-go-db
+  name: lab-admin-go-db
+  namespace: {{.Values.namespace}}
+spec:
+  ports:
+  - port: 27017
+    protocol: TCP
+    targetPort: 27017
