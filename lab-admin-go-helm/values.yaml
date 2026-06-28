@@ -1,0 +1,5 @@
+replicaCount: 1
+namespace: lab-admin-go
+image:
+  repository: congdat2409/lab-admin-go
+  tag: 9a7f4c18c7501126a74a2e906717ca76670d3bc1
