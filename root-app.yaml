@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/your-org/infrastructure-repo.git'
+    repoURL: https://github.com/datdev2409/argocd-apps
     targetRevision: HEAD
     path: apps                # <-- Watches the directory containing the other apps
   destination:

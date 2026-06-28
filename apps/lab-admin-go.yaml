@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lab-admin-go
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/datdev2409/argocd-apps'
+    targetRevision: main
+    path: lab-admin-go-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: lab-admin-go     # <-- Where the actual microservice code gets deployed
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
