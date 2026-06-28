@@ -18,13 +18,14 @@ spec:
     spec:
       containers:
       - image: "mongo:latest"
+        args: ["--config", "/etc/mongodb/mongod.conf"]
         name: mongo
         envFrom:
         - configMapRef:
             name: db-config
         mounts:
         - name: mongo-config-volume
-          mountPath: /etc/mongo
+          mountPath: /etc/mongodb/mongod.conf
           subPath: mongod.conf
       volumes:
       - name: mongo-config-volume
